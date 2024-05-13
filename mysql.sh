@@ -19,13 +19,23 @@ else
 fi
 
 dnf install mysql-server -y &>> $LOGFILE
-#VALIDATE $? "Installing Mysql Server"
+VALIDATE $? "Installing Mysql Server"
 
 systemctl enable mysqld &>> $LOGFILE
-#VALIDATE $? "Enabling Mysql server"
+VALIDATE $? "Enabling Mysql server"
 
 systemctl start mysqld &>> $LOGFILE
-#VALIDATE $? "Starting Mysql server"
+VALIDATE $? "Starting Mysql server"
 
-mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
+#mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 #VALIDATE $? "Settting up root password"
+
+mysql -h 172.31.19.64 -uroot -pExpenseApp@1 -e 'show databases;' &>> $LOGFILE
+if [$? -ne 0]
+then
+    mysql_secure_installation --set-root-pass ExpenseApp@1 &>> $LOGFILE
+    VALIDATE $? "MySQL root password setup"
+else
+    echo "MySQL root password is already setup...$Y SKIPPING $N"
+fi
+
