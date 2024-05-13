@@ -15,17 +15,17 @@ then
     echo "Please run this script with root access."
     exit 1
 else
-    echo "your are a super user"
+    echo "you are a super user"
 fi
 
-dnf install mysql-server -y &>>$LOGFILE
-VALIDATE $? "Installating Mysql Server"
+dnf install mysql-server -y &>> $LOGFILE
+VALIDATE $? "Installing Mysql Server"
 
-systemctl enable mysql &>>$LOGFILE
-VALIDATE $? "Enabling mysql server"
+systemctl enable mysqld &>> $LOGFILE
+VALIDATE $? "Enabling Mysql server"
 
-systemctl start mysql &>>$LOGFILE
-VALIDATE $? "Starting mysql server"
+systemctl start mysqld &>> $LOGFILE
+VALIDATE $? "Starting Mysql server"
 
-mysql_secure_installation --set-root-password ExpenseApp@1 &>>$LOGFILE
+mysql_secure_installation --set-root-password ExpenseApp@1 &>> $LOGFILE
 VALIDATE $? "Settting up root password"
