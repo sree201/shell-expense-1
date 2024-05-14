@@ -38,4 +38,3 @@ then
 else
     echo "MySQL root password is already setup...$Y SKIPPING $N"
 fi
-
