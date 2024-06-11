@@ -1,5 +1,5 @@
 
-backup_dir="/tmp/backup-app.log"
+#backup_dir="/tmp/backup-app.log"
 
 source_dir="/tmp/app.log"
 
