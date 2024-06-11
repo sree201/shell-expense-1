@@ -18,6 +18,6 @@ cd /usr/share/nginx/html &>>$LOGFILE
 unzip /tmp/frontend.zip &>>$LOGFILE
 
 #check your repo and path
-cp /home/ec2-user/shell-expense/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
+cp /home/ec2-user/shell-expense-1/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
 
 systemctl restart nginx &>>$LOGFILE
