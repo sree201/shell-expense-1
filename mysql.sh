@@ -49,3 +49,8 @@ then
 else
     echo -e "MySQL Root password is already setup...$Y SKIPPING $N"
 fi
+
+# This is for &>>$logfile for multiple times not to use
+# sh 06-array.sh &> output.log --> It will take both failure or  success 
+
+# Exit status is if previous command is success then it will become 0 otherwise it will become not 0
