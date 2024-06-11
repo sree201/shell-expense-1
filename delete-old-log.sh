@@ -1,9 +1,9 @@
 
-#backup_dir="/tmp/backup-app.log"
+backup_dir="/tmp/backup-app.log"
 
 source_dir="/tmp/app.log"
 
-#tar -czf "$backup_dir/backup_$(date +%Y%m%d_%H%M%S).tar.gz" "$source_dir"
+tar -czf "$backup_dir/backup_$(date +%Y%m%d_%H%M%S).tar.gz" "$source_dir"
 
 
 if [ -d $source_dir ]
