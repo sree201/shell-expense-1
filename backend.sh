@@ -1,4 +1,5 @@
 #!/bin/bash
+
 source ./common.sh
 
 check_root
@@ -7,16 +8,13 @@ echo "Please enter DB password:"
 read -s mysql_root_password
 
 dnf module disable nodejs -y &>>$LOGFILE
-
 dnf module enable nodejs:20 -y &>>$LOGFILE
-
 dnf install nodejs -y &>>$LOGFILE
 
-id expense
+id expense &>>$LOGFILE
 if [ $? -ne 0 ]
 then
     useradd expense &>>$LOGFILE
-    
 else
     echo -e "Expense user already created...$Y SKIPPING $N"
 fi
@@ -32,7 +30,7 @@ unzip /tmp/backend.zip &>>$LOGFILE
 npm install &>>$LOGFILE
 
 #check your repo and path
-cp /home/ec2-user/shell-expense/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
+cp /home/ec2-user/expense-shell-1/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 
 systemctl daemon-reload &>>$LOGFILE
 
@@ -42,7 +40,6 @@ systemctl enable backend &>>$LOGFILE
 
 dnf install mysql -y &>>$LOGFILE
 
-# mysql -h techitcloud.cloud -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
-# VALIDATE $? "Schema loading"
+mysql -h 172.31.19.64 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 
 systemctl restart backend &>>$LOGFILE
