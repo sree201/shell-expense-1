@@ -8,10 +8,13 @@ echo "Please enter DB password:"
 read -s mysql_root_password
 
 dnf install mysql-server -y &>>$LOGFILE
+VALIDATE $? "Installating MySQL Server"
 
 systemctl enable mysqld &>>$LOGFILE
+VALIDATE $? "Enabling MySQL Server"
 
 systemctl start mysqld &>>$LOGFILE
+VALIDATE $? " Starting MySQL Server"
 
 #mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 #VALIDATE $? "Setting up root password"
