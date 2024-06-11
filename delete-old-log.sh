@@ -1,5 +1,5 @@
 
-backup_dir="/tmp/backup-app.log"
+backup_dir="/tmp/app-log/backup"
 
 source_dir="/tmp/app.log"
 
@@ -16,7 +16,7 @@ fi
 
 FILES=$(find $source_dir -name "*.log" -mtime +14)
 
-echo "files to delte:  $FILES"
+echo "files to delete:  $FILES"
 
 
 while IFS= read -r line
