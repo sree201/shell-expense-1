@@ -12,7 +12,7 @@ dnf module enable nodejs:20 -y &>>$LOGFILE
 
 dnf install nodejs -y &>>$LOGFILE
 
-id expense &>>$LOGFILE
+id expense &>> $LOGFILE
 if [ $? -ne 0 ]
 then
     useradd expense &>>$LOGFILE
